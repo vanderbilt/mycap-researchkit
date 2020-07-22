@@ -630,8 +630,8 @@ ORKDefineStringKey(DefaultDestinationStepIdentifier);
 
 static const NSInteger AdditionalIntegerValue = 42;
 
-static NSDate *(^Date)() = ^NSDate *{ return [NSDate dateWithTimeIntervalSince1970:60*60*24]; };
-static NSDateComponents *(^DateComponents)() = ^NSDateComponents *{
+static NSDate *(^Date)(void) = ^NSDate *{ return [NSDate dateWithTimeIntervalSince1970:60*60*24]; };
+static NSDateComponents *(^DateComponents)(void) = ^NSDateComponents *{
     NSDateComponents *dateComponents = [NSDateComponents new];
     dateComponents.hour = 6;
     dateComponents.minute = 6;
@@ -1568,7 +1568,7 @@ static ORKStepResult *(^getConsentStepResult)(NSString *, NSString *, BOOL) = ^O
     NSArray *tappings = filteredSteps(@"tapping", @"left");
     XCTAssertEqual(tappings.count, 1);
     ORKStep *tappingStep = [tappings firstObject];
-    XCTAssertEqualObjects(tappingStep.title, @"Tap the buttons using your LEFT hand.");
+    XCTAssertEqualObjects(tappingStep.text, @"Tap the buttons using your LEFT hand.");
     XCTAssertFalse(tappingStep.optional);
     
 }
@@ -1607,7 +1607,7 @@ static ORKStepResult *(^getConsentStepResult)(NSString *, NSString *, BOOL) = ^O
     NSArray *tappings = filteredSteps(@"tapping", @"right");
     XCTAssertEqual(tappings.count, 1);
     ORKStep *tappingStep = [tappings firstObject];
-    XCTAssertEqualObjects(tappingStep.title, @"Tap the buttons using your RIGHT hand.");
+    XCTAssertEqualObjects(tappingStep.text, @"Tap the buttons using your RIGHT hand.");
     XCTAssertFalse(tappingStep.optional);
     
 }
@@ -1664,12 +1664,12 @@ static ORKStepResult *(^getConsentStepResult)(NSString *, NSString *, BOOL) = ^O
             // Look for tapping steps
             ORKStep *rightTapStep = filteredSteps(@"tapping", @"right");
             XCTAssertNotNil(rightTapStep);
-            XCTAssertEqualObjects(rightTapStep.title, @"Tap the buttons using your RIGHT hand.");
+            XCTAssertEqualObjects(rightTapStep.text, @"Tap the buttons using your RIGHT hand.");
             XCTAssertTrue(rightTapStep.optional);
             
             ORKStep *leftTapStep = filteredSteps(@"tapping", @"left");
             XCTAssertNotNil(leftTapStep);
-            XCTAssertEqualObjects(leftTapStep.title, @"Tap the buttons using your LEFT hand.");
+            XCTAssertEqualObjects(leftTapStep.text, @"Tap the buttons using your LEFT hand.");
             XCTAssertTrue(leftTapStep.optional);
         }
     }

@@ -42,6 +42,7 @@
 #import "ORKAnswerTextField.h"
 
 #import "ORKAnswerFormat_Internal.h"
+#import "ORKQuestionResult_Private.h"
 #import "ORKResult_Private.h"
 
 #import "ORKHelpers_Internal.h"
@@ -376,7 +377,7 @@ static const NSString *FormattedAddressLines = @"FormattedAddressLines";
 
 - (void)updateMapWithLocation:(ORKLocation *)location {
     
-    MKPlacemark *placemark = location ? [[MKPlacemark alloc] initWithCoordinate:location.coordinate addressDictionary:nil] : nil;
+    MKPlacemark *placemark = location ? [[MKPlacemark alloc] initWithCoordinate:location.coordinate addressDictionary:location.addressDictionary] : nil;
     
     [_mapView removeAnnotations:_mapView.annotations];
     

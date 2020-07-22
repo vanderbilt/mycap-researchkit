@@ -38,16 +38,21 @@
 #import "ORKTaskViewController_Internal.h"
 
 #import "ORKAnswerFormat_Internal.h"
+#import "ORKCollectionResult_Private.h"
 #import "ORKConsentDocument_Internal.h"
 #import "ORKConsentReviewStep.h"
 #import "ORKConsentSignature.h"
+#import "ORKConsentSignatureResult.h"
 #import "ORKFormStep.h"
+#import "ORKQuestionResult_Private.h"
 #import "ORKResult.h"
+#import "ORKSignatureResult_Private.h"
 #import "ORKSignatureStep.h"
 #import "ORKStep_Private.h"
 
 #import "ORKHelpers_Internal.h"
 #import "UIBarButtonItem+ORKBarButtonItem.h"
+#import "ORKSkin.h"
 
 
 typedef NS_ENUM(NSInteger, ORKConsentReviewPhase) {
@@ -227,8 +232,12 @@ static NSString *const _FamilyNameIdentifier = @"family";
     NSString *html = [document mobileHTMLWithTitle:ORKLocalizedString(@"CONSENT_REVIEW_TITLE", nil)
                                              detail:ORKLocalizedString(@"CONSENT_REVIEW_INSTRUCTION", nil)];
 
-    ORKConsentReviewController *reviewViewController = [[ORKConsentReviewController alloc] initWithHTML:html delegate:self];
+    ORKConsentReviewController *reviewViewController = [[ORKConsentReviewController alloc] initWithHTML:html delegate:self requiresScrollToBottom:[[self consentReviewStep] requiresScrollToBottom]];
+    if (ORKNeedWideScreenDesign(self.view)) {
+        [reviewViewController setTextForiPadStepTitleLabel:self.title];
+    }
     reviewViewController.localizedReasonForConsent = [[self consentReviewStep] reasonForConsent];
+    reviewViewController.cancelButtonItem = self.cancelButtonItem;
     return reviewViewController;
 }
 
@@ -259,6 +268,7 @@ static NSString *const _SignatureStepIdentifier = @"signatureStep";
         case ORKConsentReviewPhaseName: {
             // A form step VC with a form step with a first name and a last name
             ORKFormStepViewController *formViewController = [self makeNameFormViewController];
+            formViewController.cancelButtonItem = self.cancelButtonItem;
             viewController = formViewController;
             break;
         }
@@ -271,6 +281,7 @@ static NSString *const _SignatureStepIdentifier = @"signatureStep";
         case ORKConsentReviewPhaseSignature: {
             // Signature VC
             ORKSignatureStepViewController *signatureViewController = [self makeSignatureViewController];
+            signatureViewController.cancelButtonItem = self.cancelButtonItem;
             viewController = signatureViewController;
             break;
         }
