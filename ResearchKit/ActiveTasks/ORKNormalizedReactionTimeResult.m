@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2016, Darren Levy. All rights reserved.
+ Copyright (c) 2015, Apple Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -29,33 +29,33 @@
  */
 
 
-#import "ORKRangeOfMotionResult.h"
+#import "ORKNormalizedReactionTimeResult.h"
+
 
 #import "ORKResult_Private.h"
 #import "ORKHelpers_Internal.h"
 
 
-@implementation ORKRangeOfMotionResult
+@implementation ORKNormalizedReactionTimeResult
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
-    ORK_ENCODE_INTEGER(aCoder, orientation);
-    ORK_ENCODE_DOUBLE(aCoder, start);
-    ORK_ENCODE_DOUBLE(aCoder, finish);
-    ORK_ENCODE_DOUBLE(aCoder, minimum);
-    ORK_ENCODE_DOUBLE(aCoder, maximum);
-    ORK_ENCODE_DOUBLE(aCoder, range);
+    ORK_ENCODE_OBJ(aCoder, timerStartDate);
+    ORK_ENCODE_OBJ(aCoder, timerEndDate);
+    ORK_ENCODE_OBJ(aCoder, stimulusStartDate);
+    ORK_ENCODE_OBJ(aCoder, reactionDate);
+    ORK_ENCODE_OBJ(aCoder, currentInterval);
+    
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        ORK_DECODE_INTEGER(aDecoder, orientation);
-        ORK_DECODE_DOUBLE(aDecoder, start);
-        ORK_DECODE_DOUBLE(aDecoder, finish);
-        ORK_DECODE_DOUBLE(aDecoder, minimum);
-        ORK_DECODE_DOUBLE(aDecoder, maximum);
-        ORK_DECODE_DOUBLE(aDecoder, range);
+        ORK_DECODE_OBJ_CLASS(aDecoder, timerStartDate, NSDate);
+        ORK_DECODE_OBJ_CLASS(aDecoder, timerEndDate, NSDate);
+        ORK_DECODE_OBJ_CLASS(aDecoder, stimulusStartDate, NSDate);
+        ORK_DECODE_OBJ_CLASS(aDecoder, reactionDate, NSDate);
+        ORK_DECODE_OBJ_CLASS(aDecoder, currentInterval, NSNumber);
     }
     return self;
 }
@@ -66,33 +66,29 @@
 
 - (BOOL)isEqual:(id)object {
     BOOL isParentSame = [super isEqual:object];
+    
     __typeof(self) castObject = object;
-    return isParentSame &&
-    self.orientation == castObject.orientation &&
-    self.start == castObject.start &&
-    self.finish == castObject.finish &&
-    self.minimum == castObject.minimum &&
-    self.maximum == castObject.maximum &&
-    self.range == castObject.range;
+    return (isParentSame &&
+                        ORKEqualObjects(self.timerStartDate, castObject.timerStartDate) &&
+                ORKEqualObjects(self.timerEndDate, castObject.timerEndDate) &&
+                ORKEqualObjects(self.stimulusStartDate, castObject.stimulusStartDate) &&
+                ORKEqualObjects(self.reactionDate, castObject.reactionDate) &&
+                ORKEqualObjects(self.currentInterval, castObject.currentInterval)) ;
+    
 }
 
 - (NSUInteger)hash {
-    return super.hash;
+    return super.hash ^ _timerStartDate.hash ^ _timerEndDate.hash ^ _stimulusStartDate.hash ^ _reactionDate.hash;
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    ORKRangeOfMotionResult *result = [super copyWithZone:zone];
-    result.orientation = self.orientation;
-    result.start = self.start;
-    result.finish = self.finish;
-    result.minimum = self.minimum;
-    result.maximum = self.maximum;
-    result.range = self.range;
+    ORKNormalizedReactionTimeResult *result = [super copyWithZone:zone];
+    result.timerStartDate = [self.timerStartDate copy];
+    result.timerEndDate = [self.timerEndDate copy];
+    result.stimulusStartDate = [self.stimulusStartDate copy];
+    result.reactionDate = [self.reactionDate copy];
+    result.currentInterval = [self.currentInterval copy];
     return result;
-}
-
-- (NSString *)descriptionWithNumberOfPaddingSpaces:(NSUInteger)numberOfPaddingSpaces {
-    return [NSString stringWithFormat:@"<%@: orientation: %li; start: %f; finish: %f; minimum: %f; maximum: %f; range: %f>", self.class.description, self.orientation, self.start, self.finish, self.minimum, self.maximum, self.range];
 }
 
 @end

@@ -1,5 +1,6 @@
 /*
- Copyright (c) 2016, Darren Levy. All rights reserved.
+ Copyright (c) 2019, Apple Inc. All rights reserved.
+ Copyright (c) 2015, James Cox. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -29,48 +30,35 @@
  */
 
 
-#import <ResearchKit/ORKResult.h>
+@import Foundation;
+@import AudioToolbox;
+#import <ResearchKit/ORKDefines.h>
+#import <ResearchKit/ORKActiveStep.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- The `ORKRangeOfMotionResult` class records the results of a range of motion active task.
- 
- An `ORKRangeOfMotionResult` object records the angle values in degrees.
- */
 ORK_CLASS_AVAILABLE
-@interface ORKRangeOfMotionResult : ORKResult
+@interface ORKNormalizedReactionTimeStep : ORKActiveStep
 
-/**
- The physical orientation of the device at the start position (the commencement of recording).
- */
-@property (nonatomic, assign) NSInteger orientation;
+@property (nonatomic, assign) NSTimeInterval maximumStimulusInterval;
 
-/**
- The angle (degrees) from the device reference position at the start position.
- */
-@property (nonatomic, assign) double start;
+@property (nonatomic, assign) NSTimeInterval minimumStimulusInterval;
 
-/**
- The angle (degrees) from the device reference position when the task finishes recording.
- */
-@property (nonatomic, assign) double finish;
+@property (nonatomic, assign) NSTimeInterval timeout;
 
-/**
- The angle (degrees) from the device reference position at the minimum angle (e.g. when the knee is most bent, such as at the end of the task).
- */
-@property (nonatomic, assign) double minimum;
+@property (nonatomic, assign) NSInteger numberOfAttempts;
 
-/**
- The angle (degrees) from the device reference position at the maximum angle (e.g. when the knee is extended).
- */
-@property (nonatomic, assign) double maximum;
+@property (nonatomic, assign) double thresholdAcceleration;
 
-/**
- The angle (degrees) passed through from the start position to the maximum angle (e.g. from when the knee is flexed to when it is extended).
- */
-@property (nonatomic, assign) double range;
+@property (nonatomic, assign) SystemSoundID successSound;
+
+@property (nonatomic, assign) SystemSoundID timeoutSound;
+
+@property (nonatomic, assign) SystemSoundID failureSound;
+
+@property (nonatomic) NSNumber *currentInterval;
+
 
 @end
 
