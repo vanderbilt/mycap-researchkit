@@ -40,6 +40,7 @@
 #import "ORKTappingIntervalStepViewController.h"
 #import "ORKTaskViewController_Internal.h"
 #import "ORKVisualConsentStepViewController.h"
+#import "ORKPasscodeStepViewController.h"
 
 #import "ORKActiveStep.h"
 #import "ORKCollectionResult_Private.h"
@@ -946,6 +947,11 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
     }
     
     ORKWeakTypeOf(self) weakSelf = self;
+    // There is some sort of animation conflict with the passcode step view controller
+    // animating into view while the keyboard is animating up
+    if ([viewController isKindOfClass:[ORKPasscodeStepViewController class]]) {
+        animated = false;
+    }
     [self.pageViewController setViewControllers:@[viewController] direction:direction animated:animated completion:^(BOOL finished) {
         
         if (weakSelf == nil) {
