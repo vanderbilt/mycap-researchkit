@@ -255,6 +255,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				fr,
@@ -295,6 +296,15 @@
 				"en-AU",
 				"zh-HK",
 				"fr-CA",
+				zh_CN,
+				zh_TW,
+				es_419,
+				pt,
+				pt_PT,
+				en_GB,
+				en_AU,
+				zh_HK,
+				fr_CA,
 			);
 			mainGroup = 869230B51AAA890A00BFE11B;
 			productRefGroup = 869230BF1AAA890A00BFE11B /* Products */;
