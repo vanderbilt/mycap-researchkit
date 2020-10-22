@@ -96,6 +96,7 @@ enum TaskListRow: Int, CustomStringConvertible {
     case speechRecognition
     case speechInNoise
     case stroop
+    case leftRightJudgement
     case timedWalkWithTurnAround
     case toneAudiometry
     case dBHLToneAudiometry
@@ -174,6 +175,7 @@ enum TaskListRow: Int, CustomStringConvertible {
                     .speechRecognition,
                     .speechInNoise,
                     .stroop,
+                    .leftRightJudgement,
                     .timedWalkWithTurnAround,
                     .toneAudiometry,
                     .dBHLToneAudiometry,
@@ -310,6 +312,9 @@ enum TaskListRow: Int, CustomStringConvertible {
             
         case .stroop:
             return NSLocalizedString("Stroop", comment: "")
+            
+        case .leftRightJudgement:
+            return NSLocalizedString("Left/Right Judgement", comment: "")
             
         case .timedWalkWithTurnAround:
             return NSLocalizedString("Timed Walk with Turn Around", comment: "")
@@ -519,6 +524,7 @@ enum TaskListRow: Int, CustomStringConvertible {
         case speechRecognitionTask
         case speechInNoiseTask
         case stroopTask
+        case leftRightJudgementTask
         case timedWalkWithTurnAroundTask
         case toneAudiometryTask
         case dBHLToneAudiometryTask
@@ -658,6 +664,9 @@ enum TaskListRow: Int, CustomStringConvertible {
             
         case .stroop:
             return stroopTask
+            
+        case .leftRightJudgement:
+            return leftRightJudgementTask
             
         case .timedWalkWithTurnAround:
             return timedWalkWithTurnAroundTask
@@ -1393,8 +1402,8 @@ enum TaskListRow: Int, CustomStringConvertible {
             override func resendEmailButtonTapped() {
                 let alertTitle = NSLocalizedString("Resend Verification Email", comment: "")
                 let alertMessage = NSLocalizedString("Button tapped", comment: "")
-                let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
@@ -1418,8 +1427,8 @@ enum TaskListRow: Int, CustomStringConvertible {
             override func forgotPasswordButtonTapped() {
                 let alertTitle = NSLocalizedString("Forgot password?", comment: "")
                 let alertMessage = NSLocalizedString("Button tapped", comment: "")
-                let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
@@ -1520,6 +1529,11 @@ enum TaskListRow: Int, CustomStringConvertible {
     private var stroopTask: ORKTask {
         return ORKOrderedTask.stroopTask(withIdentifier: String(describing:Identifier.stroopTask), intendedUseDescription: exampleDescription, numberOfAttempts: 10, options: [])
     }
+    
+    /// This task presents the Left/Right Judgement pre-defined active task.
+    private var leftRightJudgementTask: ORKTask {
+        return ORKOrderedTask.leftRightJudgementTask(withIdentifier: String(describing: Identifier.leftRightJudgementTask), intendedUseDescription: exampleDescription, imageOption: .both, numberOfAttempts: 20, minimumInterStimulusInterval: 0.5, maximumInterStimulusInterval: 2.5, timeout: 3.5, shouldDisplayAnswer: true, options: [])
+    }
 
     /// This task presents the Timed Walk with turn around pre-defined active task.
     private var timedWalkWithTurnAroundTask: ORKTask {
@@ -1530,7 +1544,7 @@ enum TaskListRow: Int, CustomStringConvertible {
     private var toneAudiometryTask: ORKTask {
         return ORKOrderedTask.toneAudiometryTask(withIdentifier: String(describing:Identifier.toneAudiometryTask), intendedUseDescription: exampleDescription, speechInstruction: nil, shortSpeechInstruction: nil, toneDuration: 20, options: [])
     }
-    
+
     /// This task presents the dBHL Tone Audiometry pre-defined active task.
     private var dBHLToneAudiometryTask: ORKTask {
         return ORKOrderedTask.dBHLToneAudiometryTask(withIdentifier: String(describing:Identifier.dBHLToneAudiometryTask), intendedUseDescription: nil, options: [])

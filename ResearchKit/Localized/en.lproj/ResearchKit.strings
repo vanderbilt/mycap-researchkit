@@ -379,6 +379,31 @@
 "TIME_OUT_RESTART_ACTION" = "Restart";
 "TIME_OUT_END_ACTION" = "End Task";
 
+/* Left/Right Judgement active task.*/
+"LEFT_RIGHT_JUDGEMENT_IMAGE_OPTION_ERROR" = "Image sets must be hands or feet";
+"LEFT_RIGHT_JUDGEMENT_TASK_TITLE" = "Left or Right?";
+"LEFT_RIGHT_JUDGEMENT_TASK_TITLE_HAND" = "Left or Right Hands?";
+"LEFT_RIGHT_JUDGEMENT_TASK_TITLE_FOOT" = "Left or Right Feet?";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO1_DETAIL_TEXT_HAND" = "Every time an image of a hand appears, select the side of the body to which it belongs (left or right). Use your thumbs to tap the buttons when making your selection.";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO1_DETAIL_TEXT_FOOT" = "Every time an image of a foot appears, select the side of the body to which it belongs (left or right). Use your thumbs to tap the buttons when making your selection.";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO1_DETAIL_TEXT_HAND_FIRST" = "Every time an image appears, select the side of the body to which it belongs (left or right). Use your thumbs to tap the buttons when making your selection. Images of hands will be presented first.";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO1_DETAIL_TEXT_FOOT_FIRST" = "Every time an image appears, select the side of the body to which it belongs (left or right). Use your thumbs to tap the buttons when making your selection. Images of feet will be presented first.";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO1_DETAIL_TEXT_HAND_SECOND" = "Now repeat the same test with images of hands.";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO1_DETAIL_TEXT_FOOT_SECOND" = "Now repeat the same test with images of feet.";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO2_DETAIL_TEXT_HAND" = "You will be presented with %1$@ images of hands. Make your selections as accurate and as fast as you can. You will have a time limit of %2$@ seconds to judge each image.\n\nWhen you are ready to begin, tap Get Started.";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO2_DETAIL_TEXT_FOOT" = "You will be presented with %1$@ images of feet. Make your selections as accurate and as fast as you can. You will have a time limit of %2$@ seconds to judge each image.\n\nWhen you are ready to begin, tap Get Started.";
+"LEFT_RIGHT_JUDGEMENT_TASK_IMAGE_COUNT" = "%@ of %@";
+"LEFT_RIGHT_JUDGEMENT_TASK_STEP_TEXT_HAND" = "Select the side of the body to which each hand belongs.";
+"LEFT_RIGHT_JUDGEMENT_TASK_STEP_TEXT_FOOT" = "Select the side of the body to which each foot belongs.";
+"LEFT_RIGHT_JUDGEMENT_LEFT_BUTTON" = "Left";
+"LEFT_RIGHT_JUDGEMENT_RIGHT_BUTTON" = "Right";
+"LEFT_RIGHT_JUDGEMENT_ANSWER_CORRECT" = "You are correct!";
+"LEFT_RIGHT_JUDGEMENT_ANSWER_INCORRECT" = "Sorry, you are incorrect.";
+"LEFT_RIGHT_JUDGEMENT_TIMEOUT_NOTIFICATION" = "Sorry, this image timed out.";
+"LEFT_RIGHT_JUDGEMENT_ANSWER_RIGHT_HAND" = "The image showed a right hand.";
+"LEFT_RIGHT_JUDGEMENT_ANSWER_LEFT_HAND" = "The image showed a left hand.";
+"LEFT_RIGHT_JUDGEMENT_ANSWER_RIGHT_FOOT" = "The image showed a right foot.";
+"LEFT_RIGHT_JUDGEMENT_ANSWER_LEFT_FOOT" = "The image showed a left foot.";
 
 /* Tower of Hanoi active task */
 "TOWER_OF_HANOI_TASK_TITLE" = "Tower of Hanoi";

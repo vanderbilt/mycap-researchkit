@@ -121,6 +121,9 @@ func resultTableViewProviderForResult(_ result: ORKResult?) -> UITableViewDataSo
     case is ORKStroopResult:
         providerType = StroopResultTableViewProvider.self
         
+    case is ORKLeftRightJudgementResult:
+        providerType = LeftRightJudgementResultTableViewProvider.self
+        
     case is ORKTappingIntervalResult:
         providerType = TappingIntervalResultTableViewProvider.self
     
@@ -529,7 +532,7 @@ class ConsentSignatureResultTableViewProvider: ResultTableViewProvider {
             return 200
         }
         
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 
@@ -556,7 +559,7 @@ class AmslerGridResultTableViewProvider: ResultTableViewProvider {
             return 300
         }
         
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 
@@ -620,7 +623,7 @@ class FileResultTableViewProvider: ResultTableViewProvider {
             }
         }
         
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 
@@ -752,6 +755,58 @@ class StroopResultTableViewProvider: ResultTableViewProvider {
             ResultRow(text: "Color", detail: stroopResult.color),
             ResultRow(text: "Text", detail: stroopResult.text),
             ResultRow(text: "Color Selected", detail: stroopResult.colorSelected)
+        ]
+    }
+}
+
+/// Table view provider specific to an `ORKLeftRightJudgementResult` instance.
+class LeftRightJudgementResultTableViewProvider: ResultTableViewProvider {
+    // MARK: UITableViewDataSource
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return super.tableView(tableView, titleForHeaderInSection: 0)
+        }
+    
+        return "Samples"
+    }
+    
+    // MARK: ResultTableViewProvider
+    
+    override func resultRowsForSection(_ section: Int) -> [ResultRow] {
+        let leftRightJudgementResult = result as! ORKLeftRightJudgementResult
+        
+        let rows = super.resultRowsForSection(section)
+        
+        if section == 0 {
+            return rows
+        }
+        return [
+            ResultRow(text: "Task Results:", detail: ""), // header
+            ResultRow(text: "Left Images", detail: leftRightJudgementResult.leftImages),
+            ResultRow(text: "Right Images", detail: leftRightJudgementResult.rightImages),
+            ResultRow(text: "Percent Timed Out", detail: leftRightJudgementResult.percentTimedOut),
+            ResultRow(text: "Left Percent Correct", detail: leftRightJudgementResult.leftPercentCorrect),
+            ResultRow(text: "Right Percent Correct", detail: leftRightJudgementResult.rightPercentCorrect),
+            ResultRow(text: "Left Mean Reaction Time", detail: leftRightJudgementResult.leftMeanReactionTime),
+            ResultRow(text: "Left SD Reaction Time", detail: leftRightJudgementResult.leftSDReactionTime),
+            ResultRow(text: "Right Mean Reaction Time", detail: leftRightJudgementResult.rightMeanReactionTime),
+            ResultRow(text: "Right SD Reaction Time", detail: leftRightJudgementResult.rightSDReactionTime),
+            ResultRow(text: "Image Results:", detail: ""), // separator
+            ResultRow(text: "Image Number", detail: leftRightJudgementResult.imageNumber),
+            ResultRow(text: "Image Name", detail: leftRightJudgementResult.imageName),
+            ResultRow(text: "Reaction Time", detail: leftRightJudgementResult.reactionTime),
+            ResultRow(text: "View", detail: leftRightJudgementResult.viewPresented),
+            ResultRow(text: "Orientation", detail: leftRightJudgementResult.orientationPresented),
+            ResultRow(text: "Rotation", detail: leftRightJudgementResult.rotationPresented),
+            ResultRow(text: "Side Presented", detail: leftRightJudgementResult.sidePresented),
+            ResultRow(text: "Side Selected", detail: leftRightJudgementResult.sideSelected),
+            ResultRow(text: "Correct Match", detail: leftRightJudgementResult.sideMatch),
+            ResultRow(text: "Timed Out", detail: leftRightJudgementResult.timedOut)
         ]
     }
 }
@@ -902,8 +957,11 @@ class RangeOfMotionResultTableViewProvider: ResultTableViewProvider {
         let rangeOfMotionResult = result as! ORKRangeOfMotionResult
         let rows = super.resultRowsForSection(section)
         return rows + [
-            ResultRow(text: "flexed", detail: rangeOfMotionResult.flexed),
-            ResultRow(text: "extended", detail: rangeOfMotionResult.extended)
+            ResultRow(text: "start", detail: rangeOfMotionResult.start),
+            ResultRow(text: "finish", detail: rangeOfMotionResult.finish),
+            ResultRow(text: "minimum", detail: rangeOfMotionResult.minimum),
+            ResultRow(text: "maximum", detail: rangeOfMotionResult.maximum),
+            ResultRow(text: "range", detail: rangeOfMotionResult.range)
         ]
     }
 }

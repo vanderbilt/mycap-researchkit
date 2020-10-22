@@ -1,6 +1,5 @@
 /*
- Copyright (c) 2015, Apple Inc. All rights reserved.
- Copyright (c) 2017, Sage Bionetworks
+ Copyright (c) 2020, Dr David W. Evans. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -30,20 +29,27 @@
  */
 
 
-#import <ResearchKit/ORKAmslerGridResult.h>
-#import <ResearchKit/ORKFileResult.h>
-#import <ResearchKit/ORKHolePegTestResult.h>
-#import <ResearchKit/ORKPSATResult.h>
-#import <ResearchKit/ORKRangeOfMotionResult.h>
-#import <ResearchKit/ORKReactionTimeResult.h>
-#import <ResearchKit/ORKNormalizedReactionTimeResult.h>
-#import <ResearchKit/ORKSpatialSpanMemoryResult.h>
-#import <ResearchKit/ORKSpeechRecognitionResult.h>
-#import <ResearchKit/ORKStroopResult.h>
-#import <ResearchKit/ORKLeftRightJudgementResult.h>
-#import <ResearchKit/ORKTappingIntervalResult.h>
-#import <ResearchKit/ORKTimedWalkResult.h>
-#import <ResearchKit/ORKToneAudiometryResult.h>
-#import <ResearchKit/ORKdBHLToneAudiometryResult.h>
-#import <ResearchKit/ORKTowerOfHanoiResult.h>
-#import <ResearchKit/ORKTrailmakingResult.h>
+#import <ResearchKit/ORKDefines.h>
+#import <ResearchKit/ORKActiveStep.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+ORK_CLASS_AVAILABLE
+@interface ORKLeftRightJudgementStep : ORKActiveStep
+
+@property (nonatomic, assign) NSInteger numberOfAttempts;
+
+@property (nonatomic, assign) NSTimeInterval minimumInterStimulusInterval;
+
+@property (nonatomic, assign) NSTimeInterval maximumInterStimulusInterval;
+
+@property (nonatomic, assign) NSTimeInterval timeout;
+
+@property (nonatomic, assign) BOOL shouldDisplayAnswer;
+
+@property (nonatomic, assign) ORKPredefinedTaskImageOption imageOption;
+
+
+@end
+
+NS_ASSUME_NONNULL_END
