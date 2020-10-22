@@ -176,7 +176,7 @@ static const CGFloat buttonStackViewSpacing = 100.0;
     
     [constraints addObjectsFromArray:
     [NSLayoutConstraint
-     constraintsWithVisualFormat:@"V:|[_countView]-(>=50@750)-[_timeoutView]-(==3)-[_answerView]-(==1@250)-[_imageView]-(>=40)-[_buttonStackView]-(==30@1000)-|"
+     constraintsWithVisualFormat:@"V:|-[_countView]-(>=50@750)-[_timeoutView]-(==3)-[_answerView]-(==1@250)-[_imageView]-(>=40)-[_buttonStackView]-(==30@1000)-|"
      options:0
      metrics: nil
      views:views]];
