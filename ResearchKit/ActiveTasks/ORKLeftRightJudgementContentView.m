@@ -45,6 +45,7 @@ static const CGFloat buttonStackViewSpacing = 100.0;
     UILabel *_timeoutView;
     UILabel *_answerView;
     UILabel *_countView;
+    NSMutableArray *_variableConstraints;
 }
  
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -57,7 +58,7 @@ static const CGFloat buttonStackViewSpacing = 100.0;
         [self setUpTimeoutView];
         [self setUpAnswerView];
         [self setUpButtonStackView];
-        [self setUpConstraints];
+        [self setNeedsUpdateConstraints];
     }
     return self;
 }
@@ -133,6 +134,7 @@ static const CGFloat buttonStackViewSpacing = 100.0;
 - (void)setImageToDisplay:(UIImage *)imageToDisplay {
     [_imageView setImage: imageToDisplay];
     [self setNeedsDisplay];
+    [self setNeedsUpdateConstraints];
 }
 
 - (void)setCountText:(NSString *)countText {
@@ -166,43 +168,55 @@ static const CGFloat buttonStackViewSpacing = 100.0;
     return _answerView.text;
 }
 
-- (void)setUpConstraints {
-    
-    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+- (void)updateConstraints {
+    if (_variableConstraints) {
+        [NSLayoutConstraint deactivateConstraints:_variableConstraints];
+        [_variableConstraints removeAllObjects];
+    }
+    if (!_variableConstraints) {
+        _variableConstraints = [NSMutableArray new];
+    }
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_countView, _timeoutView, _answerView, _imageView, _buttonStackView);
     
     const CGFloat sideMargin = self.layoutMargins.left + (1.5 * ORKStandardLeftMarginForTableViewCell(self));
     
-    [constraints addObjectsFromArray:
+    [_variableConstraints addObjectsFromArray:
     [NSLayoutConstraint
-     constraintsWithVisualFormat:@"V:|-[_countView]-(>=50@750)-[_timeoutView]-(==3)-[_answerView]-(==1@250)-[_imageView]-(>=40)-[_buttonStackView]-(==30@1000)-|"
+     constraintsWithVisualFormat:@"V:|[_countView]-(>=20@750)-[_timeoutView]-(==3)-[_answerView]-(==1@250)-[_imageView]-(>=40)-[_buttonStackView]-(==30@1000)-|"
      options:0
      metrics: nil
      views:views]];
     
-    [constraints addObjectsFromArray:
+    [_variableConstraints addObjectsFromArray:
     [NSLayoutConstraint
-     constraintsWithVisualFormat:@"H:|-sideMargin-[_timeoutView]-sideMargin-|"
-     options:NSLayoutFormatAlignAllCenterY
+     constraintsWithVisualFormat:@"H:|-sideMargin-[_countView]-sideMargin-|"
+     options:0
      metrics: @{@"sideMargin": @(sideMargin)}
      views:views]];
     
-    [constraints addObjectsFromArray:
+    [_variableConstraints addObjectsFromArray:
+    [NSLayoutConstraint
+     constraintsWithVisualFormat:@"H:|-sideMargin-[_timeoutView]-sideMargin-|"
+     options:0
+     metrics: @{@"sideMargin": @(sideMargin)}
+     views:views]];
+    
+    [_variableConstraints addObjectsFromArray:
     [NSLayoutConstraint
      constraintsWithVisualFormat:@"H:|-sideMargin-[_answerView]-sideMargin-|"
      options:0
      metrics: @{@"sideMargin": @(sideMargin)}
      views:views]];
     
-    [constraints addObjectsFromArray:
+    [_variableConstraints addObjectsFromArray:
     [NSLayoutConstraint
      constraintsWithVisualFormat:@"H:|-sideMargin-[_imageView]-sideMargin-|"
      options:NSLayoutFormatAlignAllCenterY
      metrics: @{@"sideMargin": @(sideMargin)}
      views:views]];
-    
-    [constraints addObjectsFromArray:
+     
+    [_variableConstraints addObjectsFromArray:
      @[[NSLayoutConstraint
         constraintWithItem:_buttonStackView
         attribute:NSLayoutAttributeHeight
@@ -223,7 +237,7 @@ static const CGFloat buttonStackViewSpacing = 100.0;
     ]];
 
     for (ORKBorderedButton *button in @[_leftButton, _rightButton]) {
-        [constraints addObject:
+        [_variableConstraints addObject:
          [NSLayoutConstraint constraintWithItem:button
             attribute:NSLayoutAttributeWidth
             relatedBy:NSLayoutRelationEqual
@@ -238,8 +252,9 @@ static const CGFloat buttonStackViewSpacing = 100.0;
      multiplier:1.0
      constant:0].active = true;
     
-    [self addConstraints:constraints];
-    [NSLayoutConstraint activateConstraints:constraints];
+    [self addConstraints:_variableConstraints];
+    [NSLayoutConstraint activateConstraints:_variableConstraints];
+    [super updateConstraints];
 }
 
 @end

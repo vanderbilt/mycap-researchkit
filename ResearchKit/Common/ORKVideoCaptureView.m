@@ -248,7 +248,6 @@
         [NSLayoutConstraint deactivateConstraints:_variableConstraints];
         [_variableConstraints removeAllObjects];
     }
-    
     if (!_variableConstraints) {
         _variableConstraints = [NSMutableArray new];
     }
