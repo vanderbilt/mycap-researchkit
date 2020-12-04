@@ -247,10 +247,7 @@ static const CGFloat buttonStackViewSpacing = 100.0;
             constant:0.0]];
     }
     
-    [_imageView.heightAnchor
-     constraintEqualToAnchor:_imageView.widthAnchor
-     multiplier:1.0
-     constant:0].active = true;
+    [_imageView.topAnchor constraintEqualToAnchor:_countView.bottomAnchor].active = true;
     
     [self addConstraints:_variableConstraints];
     [NSLayoutConstraint activateConstraints:_variableConstraints];
