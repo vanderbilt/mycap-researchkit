@@ -1975,7 +1975,7 @@ NSString *const ORKLeftRightJudgementStepIdentifier = @"left.right.judgement";
             {   /* Countdown step */
                 
                 NSString *countdownStepText;
-                // Set the instructions to be displayed and spoken
+                // Set the instructions to be displayed and/or spoken
                 if (handImages) {
                     countdownStepText = ORKLocalizedString(@"LEFT_RIGHT_JUDGEMENT_TASK_STEP_TEXT_HAND", nil);
                 } else {
@@ -1984,7 +1984,7 @@ NSString *const ORKLeftRightJudgementStepIdentifier = @"left.right.judgement";
                 ORKCountdownStep *countdownStep = [[ORKCountdownStep alloc] initWithIdentifier:appendIdentifier(ORKCountdownStepIdentifier)];
                 countdownStep.spokenInstruction = countdownStepText;
                 countdownStep.stepDuration = 5.0;
-                countdownStep.optional = YES;
+                countdownStep.optional = NO;
                 // Set title based on the selected image set(s)
                 if (handImages) {
                     countdownStep.title = ORKLocalizedString(@"LEFT_RIGHT_JUDGEMENT_TASK_TITLE_HAND", nil);
