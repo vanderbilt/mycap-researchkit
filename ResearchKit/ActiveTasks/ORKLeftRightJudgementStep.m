@@ -82,7 +82,7 @@
                                        reason:@"timeout must be greater than zero"
                                      userInfo:nil];
     }
-    if (self.imageOption != ORKPredefinedTaskImageOptionHands && self.imageOption != ORKPredefinedTaskImageOptionFeet && self.imageOption != ORKPredefinedTaskImageOptionBoth) {
+    if (!(self.imageOption & ORKPredefinedTaskImageOptionHands) && !(self.imageOption & ORKPredefinedTaskImageOptionFeet)) {
         @throw [NSException exceptionWithName:NSInvalidArgumentException
                                        reason:ORKLocalizedString(@"LEFT_RIGHT_JUDGEMENT_IMAGE_OPTION_ERROR", nil)
                                      userInfo:nil];
