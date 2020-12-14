@@ -390,8 +390,8 @@
 "LEFT_RIGHT_JUDGEMENT_TASK_INTRO1_DETAIL_TEXT_FOOT_FIRST" = "Every time an image appears, select the side of the body to which it belongs (left or right). Use your thumbs to tap the buttons when making your selection. Images of feet will be presented first.";
 "LEFT_RIGHT_JUDGEMENT_TASK_INTRO1_DETAIL_TEXT_HAND_SECOND" = "Now repeat the same test with images of hands.";
 "LEFT_RIGHT_JUDGEMENT_TASK_INTRO1_DETAIL_TEXT_FOOT_SECOND" = "Now repeat the same test with images of feet.";
-"LEFT_RIGHT_JUDGEMENT_TASK_INTRO2_DETAIL_TEXT_HAND" = "You will be presented with %1$@ images of hands. Make your selections as accurate and as fast as you can. You will have a time limit of %2$@ seconds to judge each image.\n\nWhen you are ready to begin, tap Get Started.";
-"LEFT_RIGHT_JUDGEMENT_TASK_INTRO2_DETAIL_TEXT_FOOT" = "You will be presented with %1$@ images of feet. Make your selections as accurate and as fast as you can. You will have a time limit of %2$@ seconds to judge each image.\n\nWhen you are ready to begin, tap Get Started.";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO2_DETAIL_TEXT_HAND" = "You will be presented with %1$@ images of hands. Make your selections as accurate and as fast as you can. You will have a time limit of %2$@ seconds to judge each image.\n\nTap the button when you are ready to begin.";
+"LEFT_RIGHT_JUDGEMENT_TASK_INTRO2_DETAIL_TEXT_FOOT" = "You will be presented with %1$@ images of feet. Make your selections as accurate and as fast as you can. You will have a time limit of %2$@ seconds to judge each image.\n\nTap the button when you are ready to begin.";
 "LEFT_RIGHT_JUDGEMENT_TASK_IMAGE_COUNT" = "%@ of %@";
 "LEFT_RIGHT_JUDGEMENT_TASK_STEP_TEXT_HAND" = "Select the side of the body to which each hand belongs.";
 "LEFT_RIGHT_JUDGEMENT_TASK_STEP_TEXT_FOOT" = "Select the side of the body to which each foot belongs.";
