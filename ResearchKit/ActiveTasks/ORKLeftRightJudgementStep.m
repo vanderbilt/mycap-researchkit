@@ -37,8 +37,8 @@
 @implementation ORKLeftRightJudgementStep {
 }
 
-NSInteger const NumberOfHandImages = 120;
-NSInteger const NumberOfFootImages = 144;
+NSInteger const NumberOfHandImages = 120; // Current number of hand images
+NSInteger const NumberOfFootImages = 144; // Current number of foot images
 
 + (Class)stepViewControllerClass {
     return [ORKLeftRightJudgementStepViewController class];
