@@ -37,6 +37,9 @@
 @implementation ORKLeftRightJudgementStep {
 }
 
+NSInteger const NumberOfHandImages = 120;
+NSInteger const NumberOfFootImages = 144;
+
 + (Class)stepViewControllerClass {
     return [ORKLeftRightJudgementStepViewController class];
 }
@@ -87,12 +90,12 @@
                                        reason:ORKLocalizedString(@"LEFT_RIGHT_JUDGEMENT_IMAGE_OPTION_ERROR", nil)
                                      userInfo:nil];
     }
-    if ((self.imageOption & ORKPredefinedTaskImageOptionHands) && self.numberOfAttempts > 120)  {
+    if ((self.imageOption & ORKPredefinedTaskImageOptionHands) && self.numberOfAttempts > NumberOfHandImages)  {
     @throw [NSException exceptionWithName:NSInvalidArgumentException
                                    reason:ORKLocalizedString(@"Number of attempts is beyond number of available hand images", nil)
                                  userInfo:nil];
     }
-    if ((self.imageOption & ORKPredefinedTaskImageOptionFeet) && self.numberOfAttempts > 144)  {
+    if ((self.imageOption & ORKPredefinedTaskImageOptionFeet) && self.numberOfAttempts > NumberOfFootImages)  {
     @throw [NSException exceptionWithName:NSInvalidArgumentException
                                    reason:ORKLocalizedString(@"Number of attempts is beyond number of available foot images", nil)
                                  userInfo:nil];
