@@ -37,9 +37,6 @@
 @implementation ORKLeftRightJudgementStep {
 }
 
-NSInteger const NumberOfHandImages = 120; // Current number of hand images
-NSInteger const NumberOfFootImages = 144; // Current number of foot images
-
 + (Class)stepViewControllerClass {
     return [ORKLeftRightJudgementStepViewController class];
 }
@@ -90,12 +87,12 @@ NSInteger const NumberOfFootImages = 144; // Current number of foot images
                                        reason:ORKLocalizedString(@"LEFT_RIGHT_JUDGEMENT_IMAGE_OPTION_ERROR", nil)
                                      userInfo:nil];
     }
-    if ((self.imageOption & ORKPredefinedTaskImageOptionHands) && self.numberOfAttempts > NumberOfHandImages)  {
+    if ((self.imageOption & ORKPredefinedTaskImageOptionHands) && self.numberOfAttempts > self.numberOfImages)  {
     @throw [NSException exceptionWithName:NSInvalidArgumentException
                                    reason:ORKLocalizedString(@"Number of attempts is beyond number of available hand images", nil)
                                  userInfo:nil];
     }
-    if ((self.imageOption & ORKPredefinedTaskImageOptionFeet) && self.numberOfAttempts > NumberOfFootImages)  {
+    if ((self.imageOption & ORKPredefinedTaskImageOptionFeet) && self.numberOfAttempts > self.numberOfImages)  {
     @throw [NSException exceptionWithName:NSInvalidArgumentException
                                    reason:ORKLocalizedString(@"Number of attempts is beyond number of available foot images", nil)
                                  userInfo:nil];
@@ -157,5 +154,21 @@ NSInteger const NumberOfFootImages = 144; // Current number of foot images
             (self.imageOption == castObject.imageOption));
 }
 
+- (NSInteger)numberOfImages {
+    NSString *directory = (self.getDirectoryForImages);
+    NSArray *pathArray = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"png" inDirectory:directory];
+    NSInteger count = [pathArray count];
+    return count;
+}
+
+- (NSString *)getDirectoryForImages {
+    NSString *directory;
+    if (self.imageOption == ORKPredefinedTaskImageOptionHands) {
+        directory = @"Images/Hands";
+    } else if (self.imageOption == ORKPredefinedTaskImageOptionFeet) {
+        directory = @"Images/Feet";
+    }
+    return directory;
+}
 
 @end

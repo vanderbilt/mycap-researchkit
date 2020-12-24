@@ -673,19 +673,9 @@
     return fileName;
 }
 
-- (NSString *)getDirectoryForImages {
-    NSString *directory;
-    if ([self leftRightJudgementStep].imageOption == ORKPredefinedTaskImageOptionHands) {
-        directory = @"Images/Hands";
-    } else if ([self leftRightJudgementStep].imageOption == ORKPredefinedTaskImageOptionFeet) {
-        directory = @"Images/Feet";
-    }
-    return directory;
-}
-
 - (NSArray *)arrayOfImagesForEachAttempt {
     NSInteger imageQueueLength = ([self leftRightJudgementStep].numberOfAttempts);
-    NSString *directory = [self getDirectoryForImages];
+    NSString *directory = [self leftRightJudgementStep].getDirectoryForImages;
     if (_imageCount == 0) { // build shuffled array only once
         _imagePaths = [self arrayOfShuffledPaths:@"png" fromDirectory:directory];
     }

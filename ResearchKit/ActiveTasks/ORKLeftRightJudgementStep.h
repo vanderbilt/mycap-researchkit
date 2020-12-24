@@ -49,6 +49,8 @@ ORK_CLASS_AVAILABLE
 
 @property (nonatomic, assign) ORKPredefinedTaskImageOption imageOption;
 
+@property (nonatomic, assign) NSString * getDirectoryForImages;
+
 
 @end
 
