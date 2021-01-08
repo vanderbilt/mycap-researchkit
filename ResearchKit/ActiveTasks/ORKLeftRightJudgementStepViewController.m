@@ -738,8 +738,8 @@
     leftRightJudgementResult.rightPercentCorrect = _rightPercentCorrect;
     leftRightJudgementResult.leftMeanReactionTime = _meanLeftDuration;
     leftRightJudgementResult.rightMeanReactionTime = _meanRightDuration;
-    leftRightJudgementResult.leftSDReactionTime = _stdLeftDuration;;
-    leftRightJudgementResult.rightSDReactionTime = _stdRightDuration;;
+    leftRightJudgementResult.leftSDReactionTime = _stdLeftDuration;
+    leftRightJudgementResult.rightSDReactionTime = _stdRightDuration;
     [_results addObject:leftRightJudgementResult];
 }
 
