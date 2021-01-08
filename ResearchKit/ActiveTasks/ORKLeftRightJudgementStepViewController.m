@@ -168,7 +168,7 @@
 - (void)configureInstructions {
     NSString *instruction;
     if ([self leftRightJudgementStep].imageOption == ORKPredefinedTaskImageOptionHands) {
-        instruction= ORKLocalizedString(@"LEFT_RIGHT_JUDGEMENT_TASK_STEP_TEXT_HAND", nil);
+        instruction = ORKLocalizedString(@"LEFT_RIGHT_JUDGEMENT_TASK_STEP_TEXT_HAND", nil);
     } else if ([self leftRightJudgementStep].imageOption == ORKPredefinedTaskImageOptionFeet) {
         instruction= ORKLocalizedString(@"LEFT_RIGHT_JUDGEMENT_TASK_STEP_TEXT_FOOT", nil);
     }
