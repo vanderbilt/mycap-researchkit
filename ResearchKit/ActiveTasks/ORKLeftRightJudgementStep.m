@@ -51,6 +51,7 @@
         self.shouldStartTimerAutomatically = YES;
         self.stepDuration = NSIntegerMax;
         self.imageOption = _imageOption;
+        self.imageType = @"png";
     }
     return self;
 }
@@ -156,7 +157,7 @@
 
 - (NSInteger)numberOfImages {
     NSString *directory = (self.getDirectoryForImages);
-    NSArray *pathArray = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"png" inDirectory:directory];
+    NSArray *pathArray = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:self.imageType inDirectory:directory];
     NSInteger count = [pathArray count];
     return count;
 }

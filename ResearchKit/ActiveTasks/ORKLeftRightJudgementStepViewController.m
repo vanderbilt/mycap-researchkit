@@ -677,7 +677,7 @@
     NSInteger imageQueueLength = ([self leftRightJudgementStep].numberOfAttempts);
     NSString *directory = [self leftRightJudgementStep].getDirectoryForImages;
     if (_imageCount == 0) { // build shuffled array only once
-        _imagePaths = [self arrayOfShuffledPaths:@"png" fromDirectory:directory];
+        _imagePaths = [self arrayOfShuffledPaths:[self leftRightJudgementStep].imageType fromDirectory:directory];
     }
     NSMutableArray *imageQueueArray = [NSMutableArray arrayWithCapacity:imageQueueLength];
     // Allocate images

@@ -51,6 +51,8 @@ ORK_CLASS_AVAILABLE
 
 @property (nonatomic, assign) NSString * getDirectoryForImages;
 
+@property (nonatomic, assign) NSString * imageType;
+
 
 @end
 
