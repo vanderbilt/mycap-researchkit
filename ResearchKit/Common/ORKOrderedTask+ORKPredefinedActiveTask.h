@@ -380,7 +380,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  A left/right judgement task finishes when the user has completed all of the attempts, irrespective of correct or incorrect answers.
  
- Data collected by the task is in the form of an `ORKLeftRightJudgementResult` object.
+ Data collected by the task is in the form of an `ORKLeftRightJudgementResult` object for each image presented.
  
  @param identifier          The task identifier to use for this task, appropriate to the study.
  @param intendedUseDescription  A localized string describing the intended use of the data
