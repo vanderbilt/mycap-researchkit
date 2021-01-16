@@ -663,7 +663,6 @@
 - (UIImage *)nextImageInQueue {
     _imageQueue = [self arrayOfImagesForEachAttempt];
     UIImage *image = [_imageQueue objectAtIndex:_imageCount];
-    _imageCount++; // increment when called
     return image;
 }
 
@@ -754,6 +753,7 @@
 
 - (void)startQuestion {
     UIImage *image = [self nextImageInQueue];
+    _imageCount++; // increment when called
     self.leftRightJudgementContentView.imageToDisplay = image;
     if (_imageCount == 1) {
         [self setupButtons];
