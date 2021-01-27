@@ -201,7 +201,7 @@
     NSString *view = [self viewPresented];
     NSString *orientation = [self orientationPresented];
     NSInteger rotation = [self rotationPresented];
-    NSString *sideSelected = @"None";
+    NSString *sideSelected = ORKLocalizedString(@"LEFT_RIGHT_JUDGEMENT_BUTTON_NONE", nil);
     _match = NO;
     _timedOut = YES;
     _timedOutCount++;
