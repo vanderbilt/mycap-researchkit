@@ -112,7 +112,7 @@ The `rightPercentCorrect` property is the percentage of correct 'sideMatch' answ
 @property (nonatomic, assign) double rightPercentCorrect;
 
 /**
-The `timedOutPercent` property is the percentage of attempts in the task so far where 'timedOut' value was YES. This updates with every image presented in the set.
+The `percentTimedOut` property is the percentage of attempts in the task so far where 'timedOut' value was YES. This updates with every image presented in the set.
 */
 @property (nonatomic, assign) double percentTimedOut;
 
