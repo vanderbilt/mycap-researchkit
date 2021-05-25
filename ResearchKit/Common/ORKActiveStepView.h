@@ -45,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateTitle:(nullable NSString *)title text:(nullable NSString *)text;
 
+- (void)updateText:(nullable NSString *)text;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -51,6 +51,7 @@ FOUNDATION_EXPORT NSString *const ORKShortWalkReturnStepIdentifier;
 FOUNDATION_EXPORT NSString *const ORKShortWalkRestStepIdentifier;
 FOUNDATION_EXPORT NSString *const ORKSpatialSpanMemoryStepIdentifier;
 FOUNDATION_EXPORT NSString *const ORKStroopStepIdentifier;
+FOUNDATION_EXPORT NSString *const ORKLeftRightJudgementStepIdentifier;
 FOUNDATION_EXPORT NSString *const ORKToneAudiometryPracticeStepIdentifier;
 FOUNDATION_EXPORT NSString *const ORKToneAudiometryStepIdentifier;
 FOUNDATION_EXPORT NSString *const ORKReactionTimeStepIdentifier;

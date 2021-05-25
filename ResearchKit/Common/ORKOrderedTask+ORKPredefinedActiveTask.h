@@ -194,7 +194,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- The knee range of motion task returns a task that measures the range of motion for either a left or right knee.
+ The knee range of motion task returns a task that measures the range of motion for either a left or right knee, or both.
  
  @param identifier              The task identifier to use for this task, appropriate to the study.
  @param limbOption              Which knee is being measured.
@@ -208,7 +208,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- The shoulder range of motion task returns a task that measures the range of motion for either a left or right shoulder.
+ The shoulder range of motion task returns a task that measures the range of motion for either a left or right shoulder, or both.
  
  @param identifier              The task identifier to use for this task, appropriate to the study.
  @param limbOption              Which shoulder is being measured.
@@ -372,6 +372,36 @@ NS_ASSUME_NONNULL_BEGIN
                       intendedUseDescription:(nullable NSString *)intendedUseDescription
                             numberOfAttempts:(NSInteger)numberOfAttempts
                                      options:(ORKPredefinedTaskOption)options;
+
+/**
+ Returns a predefined Left/Right Judgement task that tests participants ability to recognise the laterality (side of the body) of a limb presented in an image.
+ 
+ The left/right judgement task is essentially an image recognition task. The participant is shown a series of images. Each image displays a limb (a hand or foot, depending on image options set), but the 3D orientation of the displayed limb varies. In each attempt of the task, the number of which can be set in the parameters, the participant has to press the button that corresponds to the side of the body to which the limb belongs (i.e. left or right).
+ 
+ A left/right judgement task finishes when the user has completed all of the attempts, irrespective of correct or incorrect answers.
+ 
+ Data collected by the task is in the form of an `ORKLeftRightJudgementResult` object for each image presented.
+ 
+ @param identifier          The task identifier to use for this task, appropriate to the study.
+ @param intendedUseDescription  A localized string describing the intended use of the data
+ collected. If the value of this parameter is `nil`, the default localized text is displayed.
+ @param imageOptions          Options for determining which images to display as stimuli.
+ @param minimumInterStimulusInterval          The minimum interval (in seconds) before each stimulus (image) is delivered, during which the screen remains empty.
+ @param maximumInterStimulusInterval          The maximum interval (in seconds) before each stimulus (image) is delivered, during which the screen remains empty.
+ @param timeout          The time period (in seconds) permitted after the stimulus begins, until the attempt fails, if a button is not pressed.
+ @param shouldDisplayAnswer          Option to display whether an image was correctly identified or not.
+ @param numberOfAttempts          Total number of images to be presented during the task.
+ @param options          Options that affect the features of the predefined task.
+ */
++ (ORKOrderedTask *)leftRightJudgementTaskWithIdentifier:(NSString *)identifier
+                                  intendedUseDescription:(nullable NSString *)intendedUseDescription
+                                             imageOption:(ORKPredefinedTaskImageOption)imageOption
+                                        numberOfAttempts:(NSInteger)numberOfAttempts
+                            minimumInterStimulusInterval:(NSTimeInterval)minimumInterStimulusInterval
+                            maximumInterStimulusInterval:(NSTimeInterval)maximumInterStimulusInterval
+                                                 timeout:(NSTimeInterval)timeout
+                                     shouldDisplayAnswer:(BOOL)shouldDisplayAnswer
+                                                 options:(ORKPredefinedTaskOption)options;
 
 /**
  Returns a predefined Speech Recognition task that transcribes participant's speech.

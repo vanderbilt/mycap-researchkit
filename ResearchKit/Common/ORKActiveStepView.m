@@ -86,6 +86,12 @@
     [headerView updateCaptionLabelPreferredWidth];
 }
 
+- (void)updateText:(NSString *)text {
+    ORKStepHeaderView *headerView = [self headerView];
+    [headerView.instructionLabel setText:text];
+    headerView.instructionLabel.hidden = (text == nil);
+}
+
 - (void)setActiveCustomView:(ORKActiveStepCustomView *)activeCustomView {
     _activeCustomView = activeCustomView;
     [self updateStepView];
